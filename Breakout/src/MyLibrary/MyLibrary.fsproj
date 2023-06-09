@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Library.fs" />
+    <Compile Include="Bolita.fs" />
+    <Compile Include="Bloques.fs" />
+    <Compile Include="Barrita.fs" />
+    <Compile Include="Interacciones.fs" />
+    <Compile Include="Interfaz_grafica.fs" />
+
   </ItemGroup>
 
 </Project>
