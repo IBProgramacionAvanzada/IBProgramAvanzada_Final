@@ -1,5 +1,13 @@
 ﻿namespace Barrita
 
-module Say =
-    let hello name =
-        printfn "Hello %s" name
+module Barrita =
+    
+    type Barrita =
+        {
+            x: float
+            y: float
+            length_x: float
+            length_y: float
+        }
+
+    
