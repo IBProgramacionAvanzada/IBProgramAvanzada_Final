@@ -14,15 +14,15 @@
 - [ ] Los bloques se representan como una lista de tuplas de pares (x,y) de la esquina inferior. Tienen ancho y altura consta e igual a 1 (por simplicidad)
 
 ### Paleta (barrita): Pablo
-- [ ] Creación de la barrita. Está representada por la posición (x,y) de la esquina inferior. Ancho 3 y altura 1 (por simplicidad)
+- [x] Creación de la barrita. Está representada por la posición (x,y) de la esquina inferior. Ancho 3 y altura 1 (por simplicidad)
 - [ ] Investigar cómo es la interactividad barrita-usuario en F# (¿Cómo se lee el teclado?)
 - [ ] 
 
 ### Interacciones: Pablo
-- [ ] Colisión de la bolita con los bordes de la pantalla (Rebote tipo 1)
+- [x] Colisión de la bolita con los bordes de la pantalla (Rebote tipo 1)
 - [ ] Colisión de la bolita con los bordes de los bloques (Rebote tipo 2)
-- [ ] Colisión de la bolita con la paleta (Rebote tipo 3)
-- [ ] Colisión de la bolita con la pared inferior (perdiste)
+- [x] Colisión de la bolita con la paleta (Rebote tipo 3)
+- [x] Colisión de la bolita con la pared inferior (perdiste)
 - [ ] Si se eliminaron todos los bloques, se gana el juego
 
 ### Interfaz gráfica: Andrés
