@@ -1,6 +1,6 @@
 ﻿namespace Interacciones
 
-open Constantes
+open Pared
 open Barrita
 open Bloques
 open Bolita
@@ -17,16 +17,16 @@ module Interacciones =
 
         }
 
-    let colision_wall (bolita:Bolita) =
+    let colision_wall (bolita:Bolita) (wall:Pared) =
         match bolita with
-        | {x = x; y = y; vx = vx; vy = vy} when x <= Constantes.wall_left -> {bolita with vx = -vx}
-        | {x = x; y = y; vx = vx; vy = vy} when x >= Constantes.wall_right -> {bolita with vx = -vx}
-        | {x = x; y = y; vx = vx; vy = vy} when y >= Constantes.wall_top -> {bolita with vy = -vy}
+        | {x = x; y = y; vx = vx; vy = vy} when x <= wall.left -> {bolita with vx = -vx}
+        | {x = x; y = y; vx = vx; vy = vy} when x >= wall.right -> {bolita with vx = -vx}
+        | {x = x; y = y; vx = vx; vy = vy} when y >= wall.top -> {bolita with vy = -vy}
         | _ -> bolita
 
-    let colision_wall_bellow (bolita:Bolita) = 
+    let colision_wall_bellow (bolita:Bolita) (wall:Pared)= 
         match bolita with
-        | {x = x; y = y; vx = vx; vy = vy} when y <= Constantes.wall_bellow -> true
+        | {x = x; y = y; vx = vx; vy = vy} when y <= wall.down -> true
         | _ -> false
 
     let colision_barrita (bolita:Bolita) (barrita:Barrita.Barrita) =
