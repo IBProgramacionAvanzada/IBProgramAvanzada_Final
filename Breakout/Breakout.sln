@@ -9,6 +9,10 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyProject", "src\MyProject\
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyLibrary", "src\MyLibrary\MyLibrary.fsproj", "{1770A45A-B45E-4BFE-BBAD-2B98540D9DBE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{430A4983-3601-4962-970D-965863D62B06}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyTests", "tests\MyTests\MyTests.fsproj", "{AAA8E13F-94B5-4BCC-8534-FFB5295D6721}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +30,14 @@ Global
 		{1770A45A-B45E-4BFE-BBAD-2B98540D9DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1770A45A-B45E-4BFE-BBAD-2B98540D9DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1770A45A-B45E-4BFE-BBAD-2B98540D9DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAA8E13F-94B5-4BCC-8534-FFB5295D6721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAA8E13F-94B5-4BCC-8534-FFB5295D6721}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAA8E13F-94B5-4BCC-8534-FFB5295D6721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAA8E13F-94B5-4BCC-8534-FFB5295D6721}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{40539C67-25FB-4862-BB4D-7504EB58992C} = {A94FE7D8-4074-424E-88F9-7F36A59CF108}
 		{1770A45A-B45E-4BFE-BBAD-2B98540D9DBE} = {A94FE7D8-4074-424E-88F9-7F36A59CF108}
+		{AAA8E13F-94B5-4BCC-8534-FFB5295D6721} = {430A4983-3601-4962-970D-965863D62B06}
 	EndGlobalSection
 EndGlobal
