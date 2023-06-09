@@ -1,4 +1,4 @@
-﻿namespace MyLibrary
+﻿namespace Barrita
 
 module Say =
     let hello name =
