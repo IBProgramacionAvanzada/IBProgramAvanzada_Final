@@ -48,3 +48,22 @@ Léase, printfn complejo
 
 
 
+## Falta por implementar a Chehade:
+- [ ] Implementar el input del usuario
+- [ ] Hacer un test no unitario. Buscar el tipo de test y agregarlo a la solución. A priori podría usar la carpeta de tests unitarios. Podría pedirle al usuario que escriba una letra y se imprima en pantalla. Y si no escribe ninguna, que se imprima "no se escribió ninguna letra"
+- [ ] Hacer una función para tratar el input del usuario. Solo hacer algo si es una flecha a izquierda o derecha
+- [ ] Implementar la posibilidad de que se choque algún bloque
+* Hacer una función que tome la lista de bloque y la bolita y devuelva true y el bloque que se choca o false y un bloque fantasma (fuera del tablero)
+* Hacer una función que dada la bolita y el bloque chocado, modifique la posición de la bolita
+* Hacer una función que dada la lista de bloques y el bloque, lo saque de la lista.
+* Quizás podría implementar las 2 funciones anteriores dentro de la 1ra
+
+*Implementar una librería llamada "Dinamica"
+que establezca las condiciones bajo las cuales
+* El juego termina (letra Q o lista de bloques vacía)
+* El juego se pausa (letra P)
+
+
+- [ ] Definir el loop temporal en el proyecto
+* *CI
+* *Función recursiva que se detenga bajo determinadas condiciones
