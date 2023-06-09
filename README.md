@@ -32,6 +32,8 @@ Léase, printfn complejo
 - [ ] Determinar cómo dibujar la paleta dado su estado
 - [ ] Definir la tasa de refresco, ej 0.5 s. Investigar cómo hacerlo en F# (¿Cómo se hace un sleep?)
 
+### Evolución
+- [ ] Se integra todo lo anterior en un único loop
 
 ### Extras
 - [ ] Poder cambiar la velocidad de la bolita
