@@ -5,27 +5,27 @@
 
 ## Módulos a implementar
 
-### Dinámica de la bolita
+### Dinámica de la bolita: Zoe
 - [ ] Creación de la bolita: su estado está definido por (x,y,vx,vy)
 - [ ] Movimiento de la bolita (Dado por una función que integre su posición usando Euler Explícito y considerando velocidad constante)
 
-### Dinámica de los bloques
+### Dinámica de los bloques: Zoe
 - [ ] Creación de los bloques
 - [ ] Los bloques se representan como una lista de tuplas de pares (x,y) de la esquina inferior. Tienen ancho y altura consta e igual a 1 (por simplicidad)
 
-### Paleta (barrita)
+### Paleta (barrita): Pablo
 - [ ] Creación de la barrita. Está representada por la posición (x,y) de la esquina inferior. Ancho 3 y altura 1 (por simplicidad)
 - [ ] Investigar cómo es la interactividad barrita-usuario en F# (¿Cómo se lee el teclado?)
 - [ ] 
 
-### Interacciones
+### Interacciones: Pablo
 - [ ] Colisión de la bolita con los bordes de la pantalla (Rebote tipo 1)
 - [ ] Colisión de la bolita con los bordes de los bloques (Rebote tipo 2)
 - [ ] Colisión de la bolita con la paleta (Rebote tipo 3)
 - [ ] Colisión de la bolita con la pared inferior (perdiste)
 - [ ] Si se eliminaron todos los bloques, se gana el juego
 
-### Interfaz gráfica
+### Interfaz gráfica: Andrés
 Léase, printfn complejo
 - [ ] Determinar cómo dibujar la bolita dado su estado
 - [ ] Determinar cómo dibujar los bloques dado su estado
