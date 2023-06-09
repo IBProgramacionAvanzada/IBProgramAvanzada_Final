@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Constantes.fs" />
     <Compile Include="Bolita.fs" />
     <Compile Include="Bloques.fs" />
     <Compile Include="Barrita.fs" />
