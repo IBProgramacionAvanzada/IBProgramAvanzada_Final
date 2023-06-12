@@ -1,9 +1,9 @@
 ﻿namespace Interacciones
 
-open Pared
-open Barrita
-open Bloques
 open Bolita
+open Bloques
+open Barrita
+open Pared
 
 module Interacciones =
 
