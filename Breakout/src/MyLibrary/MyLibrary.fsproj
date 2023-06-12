@@ -9,6 +9,7 @@
     <Compile Include="Bolita.fs" />
     <Compile Include="Bloques.fs" />
     <Compile Include="Barrita.fs" />
+    <Compile Include="Pared.fs" />
     <Compile Include="Interacciones.fs" />
     <Compile Include="Interfaz_grafica.fs" />
 
