@@ -12,14 +12,14 @@ module Barrita =
             length_y: float
         }
 
-    let presiona =
-        let mutable run = true
+    // let presiona =
+    //     let mutable run = true
 
-        while run do
-            if Console.KeyAvailable then
-                let key = Console.ReadKey(true).Key
-                match key with
-                | ConsoleKey.Q -> run <- false // Presionar Q para detener el loop
-                | _ -> printfn "Has presionado %A" key
-            System.Threading.Thread.Sleep(1000) // espera un segundo
+    //     while run do
+    //         if Console.KeyAvailable then
+    //             let key = Console.ReadKey(true).Key
+    //             match key with
+    //             | ConsoleKey.Q -> run <- false // Presionar Q para detener el loop
+    //             | _ -> printfn "Has presionado %A" key
+    //         System.Threading.Thread.Sleep(1000) // espera un segundo
         
