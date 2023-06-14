@@ -7,11 +7,6 @@ open Pared
 
 module Interacciones =
 
-    
-    module Say =
-        let hello name =
-            printfn "Hello %s" name
-
 
     //Creo tentativamente para poder definir las funciones de debajo
     type Bolita = 
