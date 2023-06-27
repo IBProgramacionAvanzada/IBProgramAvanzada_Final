@@ -3,23 +3,32 @@
 open System
 
 module Barrita =
-    
-    type Barrita =
+        
+
+    type Barra = 
         {
-            x: float //x position of lower left corner
-            y: float //y position of lower left corner
-            length_x: float
-            length_y: float
+            x: float
+            y: float
+            L: float
         }
 
-    // let presiona =
-    //     let mutable run = true
+    type MovimientoBarra = 
+        | Izquierda
+        | Derecha
+        | Ninguno
 
-    //     while run do
-    //         if Console.KeyAvailable then
-    //             let key = Console.ReadKey(true).Key
-    //             match key with
-    //             | ConsoleKey.Q -> run <- false // Presionar Q para detener el loop
-    //             | _ -> printfn "Has presionado %A" key
-    //         System.Threading.Thread.Sleep(1000) // espera un segundo
-        
+    let barra_inicial:Barra = 
+        {
+            x = 300.0
+            y = 50.
+            L = 100.
+        }
+
+    let condicion_inicial_barra =
+        barra_inicial
+
+    let actualizo_barra (barra:Barra) (movimiento:MovimientoBarra) (dx_barra:float) =
+        match movimiento with
+        | Izquierda -> {barra with x = barra.x - dx_barra}
+        | Derecha -> {barra with x = barra.x + dx_barra}
+        | Ninguno -> barra
