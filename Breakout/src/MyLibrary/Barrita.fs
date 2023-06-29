@@ -14,8 +14,8 @@ module Barrita =
 
     type MovimientoBarra = 
         | Izquierda
-        | Derecha
-        | Ninguno
+        | Derecha 
+        | Ninguno 
 
     let barra_inicial:Barra = 
         {
@@ -32,3 +32,10 @@ module Barrita =
         | Izquierda -> {barra with x = barra.x - dx_barra}
         | Derecha -> {barra with x = barra.x + dx_barra}
         | Ninguno -> barra
+
+
+    let devuelvoMovimiento (movimiento: int) =
+        match movimiento with
+        | -1 -> MovimientoBarra.Izquierda
+        | 1 -> MovimientoBarra.Derecha
+        | _ -> MovimientoBarra.Ninguno

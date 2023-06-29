@@ -28,9 +28,9 @@ let ``Actualiza Bolita`` () =
 [<Test>]
 let ``Actualizo Barra`` () =
     let barra:Barrita.Barra = {x = 50.; y = 1.; L = 5.}
-    let direccion1:Barrita.MovimientoBarra = Izquierda 
-    let direccion2:Barrita.MovimientoBarra = Derecha
-    let direccion3:Barrita.MovimientoBarra = Ninguno
+    let direccion1 = Barrita.devuelvoMovimiento(-1) 
+    let direccion2:Barrita.MovimientoBarra = Barrita.devuelvoMovimiento(1)
+    let direccion3:Barrita.MovimientoBarra = Barrita.devuelvoMovimiento(0)
     let movimiento1:Barrita.MovimientoBarra = direccion1
     let movimiento2:Barrita.MovimientoBarra = direccion2
     let movimiento3:Barrita.MovimientoBarra = direccion3
