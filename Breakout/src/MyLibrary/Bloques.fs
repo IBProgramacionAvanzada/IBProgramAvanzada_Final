@@ -12,9 +12,9 @@ module Bloques =
     let yFinal = 1000.0
 
     type Bloques =
-    {
-        Estado: Map<int*int, bool>
-    }
+        {
+            Estado: Map<int*int, bool>
+        }
     // se almacena el estado de los bloques en un mapa cuyas claves son los indices (fila, columna) de cada bloque
     // y cuyos valores son un booleano que indica si el bloque esta activo o no
     let inicializarBloques (filas: int) (columnas: int) : Bloques =
@@ -35,54 +35,3 @@ module Bloques =
 
     let condicion_inicial_bloques = inicializarBloques 8 14
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // (* type Bloque = 
-    //     {
-    //         x: float // Posición x de esquina inferior izquierda
-    //         y: float // Posición y de esquina inferior izquierda
-    //         Lx: float
-    //         Ly: float
-    //     }
-
-
-    // let condicion_inicial_bloques =
-    //     let bloque:Bloque = {
-    //         x = 0.
-    //         y = 0.
-    //         Lx = 10.
-    //         Ly = 10.
-    //     }
-    //     [bloque;bloque] 
-
-    // let eliminar_bloque (bloques:Bloque list) (bloque:Bloque) =
-    //     bloques *)

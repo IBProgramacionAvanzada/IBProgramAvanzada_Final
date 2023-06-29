@@ -11,7 +11,7 @@
     <Compile Include="Barrita.fs" />
     <Compile Include="Pared.fs" />
     <Compile Include="Interacciones.fs" />
-    <Compile Include="Interfaz_grafica.fs" />
+    <Compile Include="Tablero.fs" />
 
   </ItemGroup>
 

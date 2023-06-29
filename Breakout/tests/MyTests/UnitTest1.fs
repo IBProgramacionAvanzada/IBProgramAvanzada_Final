@@ -31,8 +31,8 @@ let ``Actualizo Barra`` () =
     let barra_after2:Barrita.Barra =  {x = 51.0; y = 1.; L = 5.}
     let barra_after3:Barrita.Barra = barra
     Assert.AreEqual(barra_after1, (Barrita.actualizo_barra barra movimiento1 dx_barra))
-    Assert.AreEqual(barra_after3, (Barrita.actualizo_barra barra movimiento1 dx_barra))
-    Assert.AreEqual(barra_after3, (Barrita.actualizo_barra barra movimiento1 dx_barra))
+    Assert.AreEqual(barra_after2, (Barrita.actualizo_barra barra movimiento2 dx_barra))
+    Assert.AreEqual(barra_after3, (Barrita.actualizo_barra barra movimiento3 dx_barra))
 
 
 [<Test>]

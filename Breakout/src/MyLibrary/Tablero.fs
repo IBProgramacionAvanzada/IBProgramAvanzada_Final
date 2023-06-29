@@ -12,5 +12,5 @@ module tablero =
             paredes: Pared.Paredes
             barra: Barrita.Barra
             bolita: bolita.Bolita
-            bloques: Bloques.Bloque List
+            bloques: Bloques.Bloques
         }

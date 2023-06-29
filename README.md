@@ -1,49 +1,16 @@
 # IBProgramAvanzada_Final
- Repo del final de la materia "Programación Avanzada". Grupo: Pablo Chehade, Andrés Dosil, Zoe Prieto
+ Repo del final de la materia "Programación Avanzada".
+ 
+ Grupo:
+ * Pablo Chehade
+ * Andrés Dosil
+ * Zoe Prieto
 
+## Sobre nuestra contratación por Terminal Frost Inc.
+    Érase una vez en una tierra de bits y bytes, una empresa emergente que tomaba vida, conocida como Terminal Frost Inc. En un universo donde los juegos de video se habían convertido en extravagantes exhibiciones de gráficos y efectos, Terminal Frost tenía una visión diferente. Soñaban con un regreso a los días de los juegos clásicos, aquellos que podían correrse en las más humildes terminales, en lugares donde los gráficos coloridos y los sonidos estridentes se consideraban lujos innecesarios.
 
+    Terminal Frost no era una empresa ordinaria. Su público objetivo eran los programadores, aquellos artesanos de código que pasaban sus días y sus noches entre líneas de instrucciones y estructuras de datos. Estos guerreros de la lógica, a menudo necesitaban relajarse, pero las reglas de sus reinos laborales no permitían la instalación de juegos en sus nobles máquinas.
 
-## Módulos a implementar
-
-### Dinámica de la bolita: Zoe
-- [ ] Creación de la bolita: su estado está definido por (x,y,vx,vy)
-- [ ] Movimiento de la bolita (Dado por una función que integre su posición usando Euler Explícito y considerando velocidad constante)
-
-### Dinámica de los bloques: Zoe
-- [ ] Creación de los bloques
-- [ ] Los bloques se representan como una lista de tuplas de pares (x,y) de la esquina inferior. Tienen ancho y altura consta e igual a 1 (por simplicidad)
-
-### Paleta (barrita): Pablo
-- [x] Creación de la barrita. Está representada por la posición (x,y) de la esquina inferior. Ancho 3 y altura 1 (por simplicidad)
-- [ ] Investigar cómo es la interactividad barrita-usuario en F# (¿Cómo se lee el teclado?)
-- [ ] 
-
-### Interacciones: Pablo
-- [x] Colisión de la bolita con los bordes de la pantalla (Rebote tipo 1)
-- [ ] Colisión de la bolita con los bordes de los bloques (Rebote tipo 2)
-- [x] Colisión de la bolita con la paleta (Rebote tipo 3)
-- [x] Colisión de la bolita con la pared inferior (perdiste)
-- [ ] Si se eliminaron todos los bloques, se gana el juego
-
-### Interfaz gráfica: Andrés
-Léase, printfn complejo
-- [ ] Determinar cómo dibujar la bolita dado su estado
-- [ ] Determinar cómo dibujar los bloques dado su estado
-- [ ] Determinar cómo dibujar la paleta dado su estado
-- [ ] Definir la tasa de refresco, ej 0.5 s. Investigar cómo hacerlo en F# (¿Cómo se hace un sleep?)
-
-### Evolución
-- [ ] Se integra todo lo anterior en un único loop
-
-### Extras
-- [ ] Poder cambiar la velocidad de la bolita
-- [ ] Definir distintos tipos de bloques
-- [ ] Graficar puntaje
-- [ ] Si perdés, que salte un aviso "Game Over"
-- [ ] Si ganás, que salte un aviso "Ganaste"
-- [ ] Unit tests de cada función
-
-
-
+    Entonces, la empresa decidió revivir uno de los juegos clásicos más importantes de la historia: Breakout, la liberación de una pelota que derriba paredes (de la opresión), haciendose camino hacia su libertad. Habían escuchado historias de nuestro equipo, un equipo con habilidades excepcionales en la programación funcional, expertos en el uso del idioma F#. Terminal Frost decidió que nosotros podríamos llevar a cabo esta noble tarea. Y así embarcamos nuestra misión, listos para dar vida a este juego clásico en las terminales de los programadores de todo el mundo.
 
 
