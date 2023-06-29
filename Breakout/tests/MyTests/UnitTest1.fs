@@ -120,7 +120,7 @@ let ``Interaccion bloques`` () =
     let bolita2:bolita.Bolita = {x = 100.0; y = 812.5; vx = 1.; vy = 1.}
     let bolita2_final:bolita.Bolita = {x = 100.0; y = 812.5; vx = -1.; vy = 1.}
     
-    let bolita3:bolita.Bolita = {x = 120.; y = 842.0; vx = 1.; vy = -1.} 
+    let bolita3:bolita.Bolita = {x = 120.; y = 824.0; vx = 1.; vy = -1.} 
     let bolita3_final:bolita.Bolita = {x = 120.; y = 824.0; vx = 1.; vy = 1.}
 
     let bolita4:bolita.Bolita = {x = 100.0; y = 800.0; vx = 1.; vy = 1.}
