@@ -4,6 +4,7 @@ open Bolita
 open Bloques
 open Barrita
 open Pared
+open System.Collections.Generic
 
 module Interacciones =
     let Interaccion_pared (paredes:Pared.Paredes) (bolita:bolita.Bolita) =
@@ -73,8 +74,9 @@ module Interacciones =
         bolita.y <= pared.Down_y
 
     let no_hay_bloques (bloques: Bloques.Bloques): bool =
-        let lista = bloques.Estado |> Map.values
-        List.forall (fun x -> x = false) lista
+        let estado = bloques.Estado
+        let valores = estado.Values
+        valores |> Seq.forall ((=) false)
 
     // let termina_juego (bolita:bolita.Bolita) (pared:Pared.Paredes) (bloques: Bloques.Bloques) :bool =
     //     Bolita_escapa bolita pared || no_hay_bloques bloques
