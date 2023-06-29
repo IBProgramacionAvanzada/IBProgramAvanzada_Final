@@ -20,51 +20,63 @@ module Interacciones =
         else 
             bolita
 
-    type Bloque_eliminado =
-        | Eliminado of Bloques.Bloque
-        | NoEliminado
+    
 
+    // verifica que las coordenadas de la bolita esten dentro de la región donde existen bloques
+    let validarCoordenadas (x: float) (y: float): bool =
+        x >= 0.0 && x < 700.0 && y >= Bloques.yInicial && y < Bloques.yFinal
+
+    // A partir de las coordenadas (x,y) de la bolita, devuelve los indices del unico bloque con el cual la bolita podria colisionar
+    let obtenerIdxBloque (x: float) (y: float): int*int =
+        let indiceFila = int ((y - Bloques.yInicial) / Bloques.LY)
+        let indiceColumna = int (x / Bloques.LX)
+        (indiceFila, indiceColumna)
+
+    // verifica si hay un bloque activo en las coordenadas (x,y)
+    let hayBloque (x: float) (y: float) (bloques: Bloques.Bloques) : bool =
+        match validarCoordenadas x y with
+        | false -> false
+        | true ->
+            let (indiceFila, indiceColumna) = obtenerIdxBloque x y
+            let estado = bloques.Estado |> Map.find (indiceFila, indiceColumna)
+            estado
+    
     type Choque_con_bloque = 
         | Vertical
         | Horizontal
 
-    let choca_bloque (bolita:bolita.Bolita)  (bloque:Bloques.Bloque) = 
-        bolita.y <= bloque.y + bloque.Ly && bolita.y >= bloque.y && bolita.x >= bloque.x && bolita.x <= bloque.x + bloque.Lx
-
-    let Tipo_choque (bolita:bolita.Bolita) (bloque:Bloques.Bloque) =
-        let distancias_a_bloque = [bolita.y - bloque.y; bloque.y + bloque.Ly - bolita.y; bolita.x - bloque.x; bloque.x + bloque.Lx - bolita.x]
+    let Tipo_choque (bolita:bolita.Bolita) (fila: int) (columna: int) =
+        let bloque_x, bloque_y = Bloques.obtenerCoordenadas fila columna
+        let distancias_a_bloque = [bolita.y - bloque_y; bloque_y + Bloques.LY - bolita.y; bolita.x - bloque_x; bloque_x + Bloques.LX - bolita.x]
         let minimo = List.min distancias_a_bloque
-        if minimo = bolita.y - bloque.y || minimo = bloque.y + bloque.Ly - bolita.y then
+        if minimo = bolita.y - bloque_y || minimo = bloque_y + Bloques.LY - bolita.y then
             Vertical
         else
             Horizontal
             
-    let Interaccion_bloques (bloques: Bloques.Bloque List) (bolita: bolita.Bolita) =
-
-        let rec Iteracion_sobre_bloques (bloques: Bloques.Bloque List) (bolita: bolita.Bolita) =
-            match bloques with
-            | [] -> (bolita, Bloque_eliminado.NoEliminado)
-            | bloque::bloques -> 
-                if choca_bloque bolita bloque then
-                    let tipo_choque = Tipo_choque bolita bloque
-                    match tipo_choque with
-                        | Vertical -> ({bolita with vy = -bolita.vy}, Bloque_eliminado.Eliminado bloque)
-                        | Horizontal -> ({bolita with vx = -bolita.vx}, Bloque_eliminado.Eliminado bloque)
-                else
-                    Iteracion_sobre_bloques bloques bolita
-
-        Iteracion_sobre_bloques bloques bolita
+    let Interaccion_bloques (estado_bloques: Bloques.Bloques) (bolita: bolita.Bolita) =
+        match hayBloque bolita.x bolita.y estado_bloques with
+        | false -> 
+            (bolita, estado_bloques)
+        | true ->
+            let fila, columna = obtenerIdxBloque bolita.x bolita.y
+            let nuevosBloques = Bloques.desactivarBloque fila columna estado_bloques
+            let tipo_choque = Tipo_choque bolita fila columna
+            match tipo_choque with
+            | Vertical -> ({ bolita with vy = -bolita.vy }, nuevosBloques)
+            | Horizontal -> ({ bolita with vx = -bolita.vx }, nuevosBloques)
 
     //End
 
     let Bolita_escapa (bolita:bolita.Bolita) (pared:Pared.Paredes) : bool = 
-        bolita.y < pared.Down_y
+        bolita.y <= pared.Down_y
 
-    let Bloques_vacios (bloques:Bloques.Bloque List) : bool =
-        bloques = []
+    let no_hay_bloques (bloques: Bloques.Bloques): bool =
+        let lista = bloques.Estado |> Map.values
+        List.forall (fun x -> x = false) lista
 
-    let termina_juego (bolita:bolita.Bolita) (pared:Pared.Paredes) (bloques:Bloques.Bloque List) :bool =
-        Bolita_escapa bolita pared || Bloques_vacios bloques
+    let termina_juego (bolita:bolita.Bolita) (pared:Pared.Paredes) (bloques: Bloques.Bloques) :bool =
+        Bolita_escapa bolita pared || no_hay_bloques bloques
 
 
 
