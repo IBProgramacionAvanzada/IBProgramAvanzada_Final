@@ -72,9 +72,9 @@ module Interacciones =
     let Bolita_escapa (bolita:bolita.Bolita) (pared:Pared.Paredes) : bool = 
         bolita.y <= pared.Down_y
 
-    let no_hay_bloques (bloques: Bloques.Bloques): bool =
-        let lista = bloques.Estado |> Map.values
-        List.forall (fun x -> x = false) lista
+    // let no_hay_bloques (bloques: Bloques.Bloques): bool =
+    //     let lista = bloques.Estado |> Map.values
+    //     List.forall (fun x -> x = false) lista
 
-    let termina_juego (bolita:bolita.Bolita) (pared:Pared.Paredes) (bloques: Bloques.Bloques) :bool =
-        Bolita_escapa bolita pared || no_hay_bloques bloques
+    // let termina_juego (bolita:bolita.Bolita) (pared:Pared.Paredes) (bloques: Bloques.Bloques) :bool =
+    //     Bolita_escapa bolita pared || no_hay_bloques bloques
