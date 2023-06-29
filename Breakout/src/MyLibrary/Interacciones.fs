@@ -74,9 +74,8 @@ module Interacciones =
         bolita.y <= pared.Down_y
 
     let no_hay_bloques (bloques: Bloques.Bloques): bool =
-        let estado = bloques.Estado
-        let valores = estado.Values
-        valores |> Seq.forall ((=) false)
+        let lista = bloques.Estado  |> Map.values |> List.ofSeq
+        List.forall (fun x -> x = false) lista
 
-    // let termina_juego (bolita:bolita.Bolita) (pared:Pared.Paredes) (bloques: Bloques.Bloques) :bool =
-    //     Bolita_escapa bolita pared || no_hay_bloques bloques
+    let termina_juego (bolita:bolita.Bolita) (pared:Pared.Paredes) (bloques: Bloques.Bloques) :bool =
+        Bolita_escapa bolita pared || no_hay_bloques bloques
