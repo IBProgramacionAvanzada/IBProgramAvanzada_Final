@@ -1,7 +1,5 @@
 ﻿namespace Barrita
 
-open System
-
 module Barrita =
         
 
