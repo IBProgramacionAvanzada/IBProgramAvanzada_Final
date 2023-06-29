@@ -12,9 +12,9 @@ module Bloques =
     let yFinal = 1000.0
 
     type Bloques =
-    {
-        Estado: Map<int*int, bool>
-    }
+        {
+            Estado: Map<int*int, bool>
+        }
     // se almacena el estado de los bloques en un mapa cuyas claves son los indices (fila, columna) de cada bloque
     // y cuyos valores son un booleano que indica si el bloque esta activo o no
     let inicializarBloques (filas: int) (columnas: int) : Bloques =
@@ -24,8 +24,8 @@ module Bloques =
 
     // obtiene las coordenadas de la esquina inferior izquierda del bloque a partir de sus indices
     let obtenerCoordenadas (fila: int) (columna: int): float*float =
-        let x = (float columna) * anchoBloque
-        let y = yInicial + (float fila) * altoBloque
+        let x = (float columna) * LX
+        let y = yInicial + (float fila) * LY
         (x, y)
 
     // cambia el estado de un bloque a false
