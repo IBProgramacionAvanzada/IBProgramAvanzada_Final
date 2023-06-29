@@ -9,14 +9,6 @@ open Interacciones
 open Interfaz_grafica
 
 
-[<SetUp>]
-let Setup () =
-    ()
-
-[<Test>]
-let Test1 () =
-    Assert.Pass()
-
 
 [<Test>]
 let ``Actualiza Bolita`` () =
