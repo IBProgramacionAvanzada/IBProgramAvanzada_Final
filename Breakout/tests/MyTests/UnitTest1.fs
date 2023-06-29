@@ -28,9 +28,9 @@ let ``Actualiza Bolita`` () =
 [<Test>]
 let ``Actualizo Barra`` () =
     let barra:Barrita.Barra = {x = 50.; y = 1.; L = 5.}
-    let direccion1 = Barrita.devuelvoMovimiento(-1) 
-    let direccion2:Barrita.MovimientoBarra = Barrita.devuelvoMovimiento(1)
-    let direccion3:Barrita.MovimientoBarra = Barrita.devuelvoMovimiento(0)
+    let direccion1: Barrita.MovimientoBarra = Barrita.devuelvoMovimiento(-1) //movimiento izquierda
+    let direccion2:Barrita.MovimientoBarra = Barrita.devuelvoMovimiento(1) //movimiento derecha
+    let direccion3:Barrita.MovimientoBarra = Barrita.devuelvoMovimiento(0) //movimiento nulo
     let movimiento1:Barrita.MovimientoBarra = direccion1
     let movimiento2:Barrita.MovimientoBarra = direccion2
     let movimiento3:Barrita.MovimientoBarra = direccion3
@@ -94,9 +94,3 @@ let ``Interaccion bloques`` () =
     Assert.AreEqual( (bolita2, Interacciones.Bloque_eliminado.Eliminado bloque1),(Interacciones.Interaccion_bloques bloques {x = 4.9; y = 4.9; vx = 0.; vy = -1.})) //choca en el bloque 1
     Assert.AreEqual( (bolita3, Interacciones.Bloque_eliminado.Eliminado bloque2),(Interacciones.Interaccion_bloques bloques {x = 8.; y = 4.9; vx = 0.; vy = -1.}))  //choca en el bloque 2
     Assert.AreEqual( (bolita4, Interacciones.Bloque_eliminado.Eliminado bloque2),(Interacciones.Interaccion_bloques bloques {x = 8.; y = 4.9; vx = 140.; vy = -10.})) //choca en el bloque 2 con distinta velocidad
-
-
-    //Assert.AreEqual( [bolita1; Interacciones.Bloque_eliminado.NoEliminado], (Interacciones.Interaccion_bloques bloques {x = 50.; y = 50.; vx = 1.; vy = 1.})) //no hay choque con ningún bloque
-    //Assert.AreEqual( (bolita2  Interacciones.Bloque_eliminado.Eliminado bloque1), (Interacciones.Interaccion_bloques bloques {x = 4.9; y = 4.9; vx = 0.; vy = -1.})) //choca en el bloque 1
-    //Assert.AreEqual( (bolita3  Interacciones.Bloque_eliminado.Eliminado bloque2), (Interacciones.Interaccion_bloques bloques {x = 8.; y = 4.9; vx = 0.; vy = -1.})) //choca en el bloque 2
-    //Assert.AreEqual( (bolita4  Interacciones.Bloque_eliminado.Eliminado bloque2), (Interacciones.Interaccion_bloques bloques {x = 8.; y = 4.9; vx = 140.; vy = -10.})) //choca en el bloque 2 con distinta velocidad
