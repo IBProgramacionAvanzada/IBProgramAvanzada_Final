@@ -80,7 +80,7 @@ let ``Ubicar bloque`` () =
     // y las coordenadas donde termina la región son excluyentes
     Assert.AreEqual(true, (Interacciones.hayBloque 0.0 800.0 estado_bloques))   
     Assert.AreEqual(false, (Interacciones.hayBloque 0.0 1000. estado_bloques))
-    Assert.AreEqual(true, (Interacciones.hayBloque 0.0 999.999 nuevo_estado))
+    Assert.AreEqual(true, (Interacciones.hayBloque 0.0 999.999 estado_bloques))
     Assert.AreEqual(false, (Interacciones.hayBloque 700.0 999.999 estado_bloques))
     Assert.AreEqual(true, (Interacciones.hayBloque 699.999 800.0 estado_bloques))
     Assert.AreEqual(false, (Interacciones.hayBloque 699.999 1000.0 estado_bloques))
@@ -142,5 +142,5 @@ let ``No hay bloques`` () =
     let apagado = [(0, 0), false] |> Map.ofList
     let estado_apagados:Bloques.Bloques = { Estado = apagado }
 
-    Assert.AreEqual(false, (Interacciones.hayBloque estado_bloques))
-    Assert.AreEqual(true, (Interacciones.hayBloque estado_apagados))
+    Assert.AreEqual(false, (Interacciones.no_hay_bloques estado_bloques))
+    Assert.AreEqual(true, (Interacciones.no_hay_bloques estado_apagados))
