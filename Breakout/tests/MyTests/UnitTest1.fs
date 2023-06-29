@@ -28,9 +28,9 @@ let ``Actualiza Bolita`` () =
 [<Test>]
 let ``Actualizo Barra`` () =
     let barra:Barrita.Barra = {x = 50.; y = 1.; L = 5.}
-    let direccion1:Barrita.MovimientoBarra = Izquierda 
-    let direccion2:Barrita.MovimientoBarra = Derecha
-    let direccion3:Barrita.MovimientoBarra = Ninguno
+    let direccion1: Barrita.MovimientoBarra = Barrita.devuelvoMovimiento(-1) //movimiento izquierda
+    let direccion2:Barrita.MovimientoBarra = Barrita.devuelvoMovimiento(1) //movimiento derecha
+    let direccion3:Barrita.MovimientoBarra = Barrita.devuelvoMovimiento(0) //movimiento nulo
     let movimiento1:Barrita.MovimientoBarra = direccion1
     let movimiento2:Barrita.MovimientoBarra = direccion2
     let movimiento3:Barrita.MovimientoBarra = direccion3
@@ -85,8 +85,12 @@ let ``Interaccion bloques`` () =
     let bloque2:Bloques.Bloque = {x = 5.; y = 0.; Lx = 5.; Ly = 5.}
     let bloques: Bloques.Bloque List = [bloque1; bloque2]
 
+    let bolita1:bolita.Bolita = {x = 50.; y = 50.; vx = 1.; vy = 1.}
+    let bolita2:bolita.Bolita = {x = 4.9; y = 4.9; vx = 0.; vy = 1.}
+    let bolita3:bolita.Bolita = {x = 8.; y = 4.9; vx = 0.; vy = 1.} 
+    let bolita4:bolita.Bolita = {x = 8.; y = 4.9; vx = 140.; vy = 10.}
 
-    Assert.AreEqual( ({x = 50.; y = 50.; vx = 1.; vy = 1.} Interacciones.Bloque_eliminado.NoEliminado), (Interacciones.Interaccion_bloques bloques {x = 50.; y = 50.; vx = 1.; vy = 1.})) //no hay choque con ningún bloque
-    Assert.AreEqual( ({x = 4.9; y = 4.9; vx = 0.; vy = 1.} Interacciones.Bloque_eliminado.Eliminado bloque1), (Interacciones.Interaccion_bloques bloques {x = 4.9; y = 4.9; vx = 0.; vy = -1.})) //choca en el bloque 1
-    Assert.AreEqual( ({x = 8.; y = 4.9; vx = 0.; vy = 1.} Interacciones.Bloque_eliminado.Eliminado bloque2), (Interacciones.Interaccion_bloques bloques {x = 8.; y = 4.9; vx = 0.; vy = -1.})) //choca en el bloque 2
-    Assert.AreEqual( ({x = 8.; y = 4.9; vx = 140.; vy = 10.} Interacciones.Bloque_eliminado.Eliminado bloque2), (Interacciones.Interaccion_bloques bloques {x = 8.; y = 4.9; vx = 140.; vy = -10.})) //choca en el bloque 2 con distinta velocidad
+    Assert.AreEqual( (bolita1,  Interacciones.Bloque_eliminado.NoEliminado),(Interacciones.Interaccion_bloques bloques {x = 50.; y = 50.; vx = 1.; vy = 1.})) //no hay choque con ningún bloque
+    Assert.AreEqual( (bolita2, Interacciones.Bloque_eliminado.Eliminado bloque1),(Interacciones.Interaccion_bloques bloques {x = 4.9; y = 4.9; vx = 0.; vy = -1.})) //choca en el bloque 1
+    Assert.AreEqual( (bolita3, Interacciones.Bloque_eliminado.Eliminado bloque2),(Interacciones.Interaccion_bloques bloques {x = 8.; y = 4.9; vx = 0.; vy = -1.}))  //choca en el bloque 2
+    Assert.AreEqual( (bolita4, Interacciones.Bloque_eliminado.Eliminado bloque2),(Interacciones.Interaccion_bloques bloques {x = 8.; y = 4.9; vx = 140.; vy = -10.})) //choca en el bloque 2 con distinta velocidad
