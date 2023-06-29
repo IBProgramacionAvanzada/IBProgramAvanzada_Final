@@ -58,39 +58,83 @@ let ``Interaccion_barra`` () =
     Assert.AreEqual(bolita4, (Interacciones.Interaccion_barra barra {x = 51.; y = 0.95; vx = 1.; vy = -1.})) //choque
 
 
-[<Test>]
-let ``Choca Bloque`` () =
-    let bloque:Bloques.Bloque = {x = 0.; y = 0.; Lx = 5.; Ly = 5.}
+// [<Test>]
+// let ``Choca Bloque`` () =
+//     let bloque:Bloques.Bloque = {x = 0.; y = 0.; Lx = 5.; Ly = 5.}
     
-    Assert.AreEqual(false, (Interacciones.choca_bloque {x = 50.; y = 50.; vx = 1.; vy = 1.} bloque)) //no hay choque
-    Assert.AreEqual(true, (Interacciones.choca_bloque {x = 1.; y = 0.5; vx = 1.; vy = 1.} bloque)) //choque
-    Assert.AreEqual(true, (Interacciones.choca_bloque {x = 1.; y = 0.5; vx = 10.; vy = 100.} bloque)) //choque con velocidad distinta
+//     Assert.AreEqual(false, (Interacciones.choca_bloque {x = 50.; y = 50.; vx = 1.; vy = 1.} bloque)) //no hay choque
+//     Assert.AreEqual(true, (Interacciones.choca_bloque {x = 1.; y = 0.5; vx = 1.; vy = 1.} bloque)) //choque
+//     Assert.AreEqual(true, (Interacciones.choca_bloque {x = 1.; y = 0.5; vx = 10.; vy = 100.} bloque)) //choque con velocidad distinta
+
+[<Test>]
+let ``Ubicar bloque`` () =
+    let estado_bloques = Bloques.inicializarBloques 8 14   
+    
+    // las coordenadas donde comienza la región son incluyentes
+    // y las coordenadas donde termina la región son excluyentes
+    Assert.AreEqual(true, (Interacciones.hayBloque 0.0 800.0 estado_bloques))   
+    Assert.AreEqual(false, (Interacciones.hayBloque 0.0 1000. estado_bloques))
+    Assert.AreEqual(true, (Interacciones.hayBloque 0.0 999.999 nuevo_estado))
+    Assert.AreEqual(false, (Interacciones.hayBloque 700.0 999.999 estado_bloques))
+    Assert.AreEqual(true, (Interacciones.hayBloque 699.999 800.0 estado_bloques))
+    Assert.AreEqual(false, (Interacciones.hayBloque 699.999 1000.0 estado_bloques))
+    Assert.AreEqual(true, (Interacciones.hayBloque 699.999 999.999 estado_bloques))
 
 
 [<Test>]
 let ``Tipo de choque`` () =
-    let bloque:Bloques.Bloque = {x = 0.; y = 0.; Lx = 5.; Ly = 5.}
+    // bloque con esquina inferior en (x=100, y=800)
+    let filaTest = 0
+    let columnaTest = 2
 
-    Assert.AreEqual(Interacciones.Choque_con_bloque.Vertical, (Interacciones.Tipo_choque {x = 4.9; y = 5.; vx = -1.; vy = -1.} bloque)) //choque vertical
-    Assert.AreEqual(Interacciones.Choque_con_bloque.Horizontal, (Interacciones.Tipo_choque {x = 4.9; y = 2.5; vx = -1.; vy = 1.} bloque)) //choque horizontal
-    Assert.AreEqual(Interacciones.Choque_con_bloque.Horizontal, (Interacciones.Tipo_choque {x = 4.9; y = 2.5; vx = -10.; vy = 48.} bloque)) //choque horizontal con distinta velocidad
-
-
-
-
+    // choque vertical
+    Assert.AreEqual(Interacciones.Choque_con_bloque.Vertical, (Interacciones.Tipo_choque {x = 149.0; y = 800; vx = -1.; vy = -1.} filaTest columnaTest))
+    // choque horizontal
+    Assert.AreEqual(Interacciones.Choque_con_bloque.Horizontal, (Interacciones.Tipo_choque {x = 100.0; y = 812.5; vx = 1.; vy = -1.} filaTest columnaTest))
+    //   con distinta velocidad
+    Assert.AreEqual(Interacciones.Choque_con_bloque.Vertical, (Interacciones.Tipo_choque {x = 120.0; y = 824.0; vx = 1.; vy = -1.} filaTest columnaTest))    
+    Assert.AreEqual(Interacciones.Choque_con_bloque.Vaertical, (Interacciones.Tipo_choque {x = 120.0; y = 824.0; vx = 10.; vy = -48.} filaTest columnaTest))
+    // los choques con esquina siempre son verticales
+    Assert.AreEqual(Interacciones.Choque_con_bloque.Vertical, (Interacciones.Tipo_choque {x = 100.0; y = 800.0; vx = 1.; vy = 1.} filaTest columnaTest))
+    Assert.AreEqual(Interacciones.Choque_con_bloque.Vertical, (Interacciones.Tipo_choque {x = 100.0; y = 825.0; vx = 1.; vy = 1.} filaTest columnaTest))
+    Assert.AreEqual(Interacciones.Choque_con_bloque.Vertical, (Interacciones.Tipo_choque {x = 150.0; y = 800.0; vx = 1.; vy = 1.} filaTest columnaTest))
+    Assert.AreEqual(Interacciones.Choque_con_bloque.Vertical, (Interacciones.Tipo_choque {x = 150.0; y = 825.0; vx = 1.; vy = 1.} filaTest columnaTest))
+    
 
 [<Test>]
 let ``Interaccion bloques`` () =
-    let bloque1:Bloques.Bloque = {x = 0.; y = 0.; Lx = 5.; Ly = 5.}
-    let bloque2:Bloques.Bloque = {x = 5.; y = 0.; Lx = 5.; Ly = 5.}
-    let bloques: Bloques.Bloque List = [bloque1; bloque2]
+    // bloque con esquina inferior en (x=100, y=800)
+    let filaTest = 0
+    let columnaTest = 2
+    let _estado_bloques: Bloques.inicializarBloques 8 14
+    let estado_final = Bloques.desactivarBloque filaTest columnaTest estado_bloques
 
-    let bolita1:bolita.Bolita = {x = 50.; y = 50.; vx = 1.; vy = 1.}
-    let bolita2:bolita.Bolita = {x = 4.9; y = 4.9; vx = 0.; vy = 1.}
-    let bolita3:bolita.Bolita = {x = 8.; y = 4.9; vx = 0.; vy = 1.} 
-    let bolita4:bolita.Bolita = {x = 8.; y = 4.9; vx = 140.; vy = 10.}
+    let bolita1:bolita.Bolita = {x = 100.; y = 799.; vx = 1.; vy = 1.}
+    
+    let bolita2:bolita.Bolita = {x = 100.0; y = 812.5; vx = 1.; vy = 1.}
+    let bolita2_final:bolita.Bolita = {x = 100.0; y = 812.5; vx = -1.; vy = 1.}
+    
+    let bolita3:bolita.Bolita = {x = 120.; y = 842.0; vx = 1.; vy = -1.} 
+    let bolita43_final:bolita.Bolita = {x = 120.; y = 824.0; vx = 1.; vy = 1.}
 
-    Assert.AreEqual( (bolita1,  Interacciones.Bloque_eliminado.NoEliminado),(Interacciones.Interaccion_bloques bloques {x = 50.; y = 50.; vx = 1.; vy = 1.})) //no hay choque con ningún bloque
-    Assert.AreEqual( (bolita2, Interacciones.Bloque_eliminado.Eliminado bloque1),(Interacciones.Interaccion_bloques bloques {x = 4.9; y = 4.9; vx = 0.; vy = -1.})) //choca en el bloque 1
-    Assert.AreEqual( (bolita3, Interacciones.Bloque_eliminado.Eliminado bloque2),(Interacciones.Interaccion_bloques bloques {x = 8.; y = 4.9; vx = 0.; vy = -1.}))  //choca en el bloque 2
-    Assert.AreEqual( (bolita4, Interacciones.Bloque_eliminado.Eliminado bloque2),(Interacciones.Interaccion_bloques bloques {x = 8.; y = 4.9; vx = 140.; vy = -10.})) //choca en el bloque 2 con distinta velocidad
+    let bolita4:bolita.Bolita = {x = 100.0; y = 800.0; vx = 1.; vy = 1.}
+    let bolita4_final:bolita.Bolita = {x = 100.0; y = 800.0; vx = 1.; vy = -1.}
+    
+    // no hubo choque
+    Assert.AreEqual( (bolita1, estado_bloques), (Interacciones.Interaccion_bloques bloques bolita1))
+    // hubo choque horizontal
+    Assert.AreEqual( (bolita2_final, estado_final), (Interacciones.Interaccion_bloques bloques bolita2))
+    // hubo choque vertical
+    Assert.AreEqual( (bolita3_final, estado_final), (Interacciones.Interaccion_bloques bloques bolita3))
+    // hubo choque con esquina
+    Assert.AreEqual( (bolita4_final, estado_final),(Interacciones.Interaccion_bloques bloques bolita4))
+
+
+[<Test>]
+let ``No hay bloques`` ()
+    let estado_bloques = Bloques.inicializarBloques 1 1
+    let let apagado = [(0, 0), false] |> Map.ofList
+    let estado_apagados:Bloques.Bloques = { Estado = apagado }
+
+    Assert.AreEqual(flase, (Interacciones.hayBloques estado_bloques))
+    Assert.AreEqual(true, (Interacciones.hayBloques estado_apagados))

@@ -24,8 +24,8 @@ module Bloques =
 
     // obtiene las coordenadas de la esquina inferior izquierda del bloque a partir de sus indices
     let obtenerCoordenadas (fila: int) (columna: int): float*float =
-        let x = (float columna) * anchoBloque
-        let y = yInicial + (float fila) * altoBloque
+        let x = (float columna) * LX
+        let y = yInicial + (float fila) * LY
         (x, y)
 
     // cambia el estado de un bloque a false
