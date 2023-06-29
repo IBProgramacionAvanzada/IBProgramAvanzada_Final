@@ -9,14 +9,6 @@ open Interacciones
 open Interfaz_grafica
 
 
-[<SetUp>]
-let Setup () =
-    ()
-
-[<Test>]
-let Test1 () =
-    Assert.Pass()
-
 
 [<Test>]
 let ``Actualiza Bolita`` () =
@@ -58,13 +50,32 @@ let ``Interaccion_barra`` () =
     Assert.AreEqual(bolita4, (Interacciones.Interaccion_barra barra {x = 51.; y = 0.95; vx = 1.; vy = -1.})) //choque
 
 
-// [<Test>]
-// let ``Choca Bloque`` () =
-//     let bloque:Bloques.Bloque = {x = 0.; y = 0.; Lx = 5.; Ly = 5.}
-    
-//     Assert.AreEqual(false, (Interacciones.choca_bloque {x = 50.; y = 50.; vx = 1.; vy = 1.} bloque)) //no hay choque
-//     Assert.AreEqual(true, (Interacciones.choca_bloque {x = 1.; y = 0.5; vx = 1.; vy = 1.} bloque)) //choque
-//     Assert.AreEqual(true, (Interacciones.choca_bloque {x = 1.; y = 0.5; vx = 10.; vy = 100.} bloque)) //choque con velocidad distinta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [<Test>]
 let ``Ubicar bloque`` () =
