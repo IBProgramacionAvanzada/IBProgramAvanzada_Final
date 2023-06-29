@@ -45,6 +45,7 @@ module Interacciones =
         | Vertical
         | Horizontal
 
+
     let Tipo_choque (bolita:bolita.Bolita) (fila: int) (columna: int) =
         let bloque_x, bloque_y = Bloques.obtenerCoordenadas fila columna
         let distancias_a_bloque = [bolita.y - bloque_y; bloque_y + Bloques.LY - bolita.y; bolita.x - bloque_x; bloque_x + Bloques.LX - bolita.x]
