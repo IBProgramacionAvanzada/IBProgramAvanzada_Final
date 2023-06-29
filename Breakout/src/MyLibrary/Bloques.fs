@@ -1,23 +1,84 @@
 ﻿namespace Bloques
 
 module Bloques =
-    type Bloque = 
-        {
-            x: float // Posición x de esquina inferior izquierda
-            y: float // Posición y de esquina inferior izquierda
-            Lx: float
-            Ly: float
-        }
+
+    // anchura de cada bloque: 700/14 = 50, los 14 bloques ocupan todo el ancho de la arena
+    let LX = 50.0
+    // altura de cada bloque: (1200/8)/6 = 25, los 8 bloques ocupan una sexta parte de la altura de la arena
+    let LY = 25.0
+    let anchoArena = 700.0
+    // los bloques estan entre la altura 800 y la altura 1000; limite inferior inclusivo, limite superior exclusivo [800, 1000)
+    let yInicial = 800.0
+    let yFinal = 1000.0
+    
+    // se almacena el estado de los bloques en un mapa cuyas claves son los indices (fila, columna) de cada bloque
+    // y cuyos valores son un booleano que indica si el bloque esta activo o no
+    let inicializarBloques (filas: int) (columnas: int) : Map<int*int, bool> =
+        let indices = [for x in 0 .. filas - 1 do for y in 0 .. columnas - 1 -> (x, y)]
+        indices
+        |> List.map (fun (x, y) -> ((x, y), true))
+        |> Map.ofList
+
+    // obtiene las coordenadas de la esquina inferior izquierda del bloque a partir de sus indices
+    let obtenerCoordenadas (fila: int) (columna: int): float*float =
+        let x = (float columna) * anchoBloque
+        let y = yInicial + (float fila) * altoBloque
+        (x, y)
+
+    // cambia el estado de un bloque a false
+    let desactivarBloque (fila: int) (columna: int) (bloques: Map<int*int, bool>) : Map<int*int, bool>=
+        bloques |> Map.add (fila, columna) false
+
+    let condicion_inicial_bloques = inicializarBloques 8 14
 
 
-    let condicion_inicial_bloques =
-        let bloque:Bloque = {
-            x = 0.
-            y = 0.
-            Lx = 10.
-            Ly = 10.
-        }
-        [bloque;bloque] 
 
-    let eliminar_bloque (bloques:Bloque list) (bloque:Bloque) =
-        bloques
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // (* type Bloque = 
+    //     {
+    //         x: float // Posición x de esquina inferior izquierda
+    //         y: float // Posición y de esquina inferior izquierda
+    //         Lx: float
+    //         Ly: float
+    //     }
+
+
+    // let condicion_inicial_bloques =
+    //     let bloque:Bloque = {
+    //         x = 0.
+    //         y = 0.
+    //         Lx = 10.
+    //         Ly = 10.
+    //     }
+    //     [bloque;bloque] 
+
+    // let eliminar_bloque (bloques:Bloque list) (bloque:Bloque) =
+    //     bloques *)
