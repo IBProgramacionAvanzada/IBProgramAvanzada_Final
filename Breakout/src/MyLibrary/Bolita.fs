@@ -15,7 +15,7 @@ module bolita =
         let bolita:Bolita = {
             x = 1.
             y = 1.
-            vx = 0.
+            vx = 1.
             vy = 1.
         }
         bolita
