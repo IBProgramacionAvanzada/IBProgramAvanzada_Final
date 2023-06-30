@@ -5,8 +5,9 @@ open Bolita
 open Bloques
 open Barrita
 open Pared
+open Jugador
 open Interacciones
-open Interfaz_grafica
+
 
 
 
@@ -53,6 +54,8 @@ let ``Interaccion_barra`` () =
 let ``Interaccion_pared`` ()=
     
     let paredes:Pared.Paredes = {Up_y = 100.; Down_y = 0.; Left_x = 0.; Right_x = 100.}
+    let jugador1 = Jugador.inicializarJugador
+    let nuevo_jugador1 = Jugador.restarVida jugador1
 
     let bolita1:bolita.Bolita = {x = 50.; y = 50.; vx = 1.; vy = 1.}
     let bolita2:bolita.Bolita = {x=50.; y = 50.; vx = 100.; vy = 100.}
@@ -63,12 +66,12 @@ let ``Interaccion_pared`` ()=
 
 
 
-    Assert.AreEqual(bolita1, (Interacciones.Interaccion_pared paredes {x = 50.; y = 50.; vx = 1.; vy = 1.})) //no hay choque
-    Assert.AreEqual(bolita2, (Interacciones.Interaccion_pared paredes {x=50.; y = 50.; vx = 100.; vy = 100.})) //no hay choque
-    Assert.AreEqual(bolita3, (Interacciones.Interaccion_pared paredes {x = -1.; y = 50.; vx = -1. ; vy = 10.})) //choque con pared izquierda
-    Assert.AreEqual(bolita4, (Interacciones.Interaccion_pared paredes {x=101; y = 50; vx = 1; vy = 20})) //choque con pared derecha
-    Assert.AreEqual(bolita5, (Interacciones.Interaccion_pared paredes {x=50; y = -1; vx = 1; vy = -10})) //choque con pared de abajo
-    Assert.AreEqual(bolita6, (Interacciones.Interaccion_pared paredes {x=50; y = 101; vx = 20; vy = 1})) //choque con pared de arriba
+    Assert.AreEqual((bolita1, jugador1), (Interacciones.Interaccion_pared paredes {x = 50.; y = 50.; vx = 1.; vy = 1.} jugador1)) //no hay choque
+    Assert.AreEqual((bolita2, jugador1), (Interacciones.Interaccion_pared paredes {x=50.; y = 50.; vx = 100.; vy = 100.} jugador1)) //no hay choque
+    Assert.AreEqual((bolita3, jugador1), (Interacciones.Interaccion_pared paredes {x = -1.; y = 50.; vx = -1. ; vy = 10.} jugador1)) //choque con pared izquierda
+    Assert.AreEqual((bolita4, jugador1), (Interacciones.Interaccion_pared paredes {x=101; y = 50; vx = 1; vy = 20} jugador1)) //choque con pared derecha
+    Assert.AreEqual((bolita5, nuevo_jugador1), (Interacciones.Interaccion_pared paredes {x=50; y = -1; vx = 1; vy = -10} jugador1)) //choque con pared de abajo
+    Assert.AreEqual((bolita6, jugador1), (Interacciones.Interaccion_pared paredes {x=50; y = 101; vx = 20; vy = 1} jugador1)) //choque con pared de arriba
     //No se testea la posibilidad de que esté en una esquina porque numéricamente si el dt es suficientemente pequeño nunca debería darse la posibilidad
 
 
@@ -114,6 +117,8 @@ let ``Interaccion bloques`` () =
     let columnaTest = 2
     let estado_bloques = Bloques.inicializarBloques 8 14
     let estado_final = Bloques.desactivarBloque filaTest columnaTest estado_bloques
+    let jugador1 = Jugador.inicializarJugador
+    let jugador1_final = Jugador.sumarPuntos jugador1
 
     let bolita1:bolita.Bolita = {x = 100.; y = 799.; vx = 1.; vy = 1.}
     
@@ -127,13 +132,13 @@ let ``Interaccion bloques`` () =
     let bolita4_final:bolita.Bolita = {x = 100.0; y = 800.0; vx = 1.; vy = -1.}
     
     // no hubo choque
-    Assert.AreEqual( (bolita1, estado_bloques), (Interacciones.Interaccion_bloques estado_bloques bolita1))
+    Assert.AreEqual( (bolita1, estado_bloques, jugador1), (Interacciones.Interaccion_bloques estado_bloques bolita1 jugador1))
     // hubo choque horizontal
-    Assert.AreEqual( (bolita2_final, estado_final), (Interacciones.Interaccion_bloques estado_bloques bolita2))
+    Assert.AreEqual( (bolita2_final, estado_final, jugador1_final), (Interacciones.Interaccion_bloques estado_bloques bolita2 jugador1))
     // hubo choque vertical
-    Assert.AreEqual( (bolita3_final, estado_final), (Interacciones.Interaccion_bloques estado_bloques bolita3))
+    Assert.AreEqual( (bolita3_final, estado_final, jugador1_final), (Interacciones.Interaccion_bloques estado_bloques bolita3 jugador1))
     // hubo choque con esquina
-    Assert.AreEqual( (bolita4_final, estado_final),(Interacciones.Interaccion_bloques estado_bloques bolita4))
+    Assert.AreEqual( (bolita4_final, estado_final, jugador1_final), (Interacciones.Interaccion_bloques estado_bloques bolita4 jugador1))
 
 
 [<Test>]

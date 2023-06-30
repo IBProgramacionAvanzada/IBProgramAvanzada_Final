@@ -4,16 +4,18 @@ open Bolita
 open Bloques
 open Barrita
 open Pared
-open System.Collections.Generic
+open Jugador
 
 module Interacciones =
-    let Interaccion_pared (paredes:Pared.Paredes) (bolita:bolita.Bolita) =
+    let Interaccion_pared (paredes:Pared.Paredes) (bolita:bolita.Bolita) (jugador: Jugador.Jugador): bolita.Bolita * Jugador.Jugador =
         match bolita with
-        | bolita when bolita.x <= paredes.Left_x -> {bolita with vx = -bolita.vx}
-        | bolita when bolita.x >= paredes.Right_x -> {bolita with vx = -bolita.vx}
-        | bolita when bolita.y >= paredes.Up_y -> {bolita with vy = -bolita.vy}
-        | bolita when bolita.y <= paredes.Down_y -> bolita
-        | _ -> bolita
+        | bolita when bolita.x <= paredes.Left_x -> ({bolita with vx = -bolita.vx}, jugador)
+        | bolita when bolita.x >= paredes.Right_x -> ({bolita with vx = -bolita.vx}, jugador)
+        | bolita when bolita.y >= paredes.Up_y -> ({bolita with vy = -bolita.vy}, jugador)
+        | bolita when bolita.y <= paredes.Down_y -> 
+            let nuevo_jugador = Jugador.restarVida jugador
+            (bolita, nuevo_jugador)
+        | _ -> (bolita, jugador)
 
     let Interaccion_barra (barra:Barrita.Barra) (bolita:bolita.Bolita) =
         if bolita.y <= barra.y && bolita.x >= barra.x && bolita.x <= barra.x + barra.L then
@@ -56,19 +58,19 @@ module Interacciones =
         else
             Horizontal
             
-    let Interaccion_bloques (estado_bloques: Bloques.Bloques) (bolita: bolita.Bolita) =
+    let Interaccion_bloques (estado_bloques: Bloques.Bloques) (bolita: bolita.Bolita) (jugador: Jugador.Jugador): bolita.Bolita * Bloques.Bloques * Jugador.Jugador =
         match hayBloque bolita.x bolita.y estado_bloques with
         | false -> 
-            (bolita, estado_bloques)
+            (bolita, estado_bloques, jugador)
         | true ->
             let fila, columna = obtenerIdxBloque bolita.x bolita.y
             let nuevosBloques = Bloques.desactivarBloque fila columna estado_bloques
-            let tipo_choque = Tipo_choque bolita fila columna
+            let nuevoJugador = Jugador.sumarPuntos jugador
+            let tipo_choque = Tipo_choque bolita fila columna            
             match tipo_choque with
-            | Vertical -> ({ bolita with vy = -bolita.vy }, nuevosBloques)
-            | Horizontal -> ({ bolita with vx = -bolita.vx }, nuevosBloques)
+            | Vertical -> ({ bolita with vy = -bolita.vy }, nuevosBloques, nuevoJugador)
+            | Horizontal -> ({ bolita with vx = -bolita.vx }, nuevosBloques, nuevoJugador)
 
-    //End
 
     let Bolita_escapa (bolita:bolita.Bolita) (pared:Pared.Paredes) : bool = 
         bolita.y <= pared.Down_y
@@ -77,5 +79,5 @@ module Interacciones =
         let lista = bloques.Estado  |> Map.values |> List.ofSeq
         List.forall (fun x -> x = false) lista
 
-    let termina_juego (bolita:bolita.Bolita) (pared:Pared.Paredes) (bloques: Bloques.Bloques) :bool =
-        Bolita_escapa bolita pared || no_hay_bloques bloques
+    // let termina_juego (bolita:bolita.Bolita) (pared:Pared.Paredes) (bloques: Bloques.Bloques) :bool =
+    //     Bolita_escapa bolita pared || no_hay_bloques bloques

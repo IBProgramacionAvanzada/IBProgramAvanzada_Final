@@ -10,6 +10,7 @@
     <Compile Include="Bloques.fs" />
     <Compile Include="Barrita.fs" />
     <Compile Include="Pared.fs" />
+    <Compile Include="Jugador.fs" />
     <Compile Include="Interacciones.fs" />
     <Compile Include="Tablero.fs" />
 
